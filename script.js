@@ -129,7 +129,34 @@ function update(){
     "$" + Number(budget).toFixed(2);
 
   remainingText.innerHTML =
-    "$" + (budget-total).toFixed(2);
+    "$" + (budget-total).toFixed(2);let remaining = budget - total;
+
+let alertBox = document.getElementById("alertBox");
+
+
+if (budget > 0 && remaining < 0) {
+
+  alertBox.innerHTML =
+  `<div class="alert">
+  🚨 You are over your budget!
+  </div>`;
+
+}
+
+else if (budget > 0 && remaining < budget * 0.2) {
+
+  alertBox.innerHTML =
+  `<div class="alert">
+  ⚠️ You are close to your budget!
+  </div>`;
+
+}
+
+else {
+
+  alertBox.innerHTML = "";
+
+}
 
 
   makeChart(categories);
