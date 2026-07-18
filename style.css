@@ -238,3 +238,17 @@ button:active {
   width: 0%;
   transition: width 0.5s;
 }
+.settings-box {
+  background:white;
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 3px 10px #0002;
+}
+
+.blue button {
+  background:#2196f3;
+}
+
+.purple button {
+  background:#9c27b0;
+}
