@@ -218,3 +218,23 @@ button:active {
   font-size: 18px;
   line-height: 1.6;
 }
+.goal-box {
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 3px 10px #0002;
+}
+
+.progress {
+  background: #ddd;
+  height: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s;
+}
