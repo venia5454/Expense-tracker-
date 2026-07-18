@@ -255,3 +255,29 @@ if("serviceWorker" in navigator){
  );
 
 }
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (event) => {
+
+  event.preventDefault();
+
+  deferredPrompt = event;
+
+  document.getElementById("installBtn").style.display = "block";
+
+});
+
+
+document.getElementById("installBtn").onclick = async () => {
+
+  if(deferredPrompt){
+
+    deferredPrompt.prompt();
+
+    await deferredPrompt.userChoice;
+
+    deferredPrompt = null;
+
+  }
+
+};
