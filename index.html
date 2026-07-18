@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+  <header>
+    <h1>💰 Expense Tracker</h1>
+    <button id="darkModeBtn">🌙</button>
+  </header>
+
+  <section class="summary">
+    <div class="card">
+      <h3>Total Spent</h3>
+      <p id="total">$0.00</p>
+    </div>
+
+    <div class="card">
+      <h3>Budget</h3>
+      <p id="budget">$0.00</p>
+    </div>
+
+    <div class="card">
+      <h3>Remaining</h3>
+      <p id="remaining">$0.00</p>
+    </div>
+  </section>
+
+
+  <section class="add-box">
+
+    <h2>Add Expense</h2>
+
+    <input id="expenseName" placeholder="Expense name">
+
+    <input id="expenseAmount" type="number" placeholder="Amount">
+
+    <select id="category">
+      <option>Food</option>
+      <option>Games</option>
+      <option>Shopping</option>
+      <option>Transport</option>
+      <option>Other</option>
+    </select>
+
+    <button id="addBtn">Add Expense</button>
+
+  </section>
+
+
+  <section class="budget-box">
+
+    <h2>Set Budget</h2>
+
+    <input id="budgetInput" type="number" placeholder="Monthly budget">
+
+    <button id="saveBudget">Save Budget</button>
+
+  </section>
+
+
+  <section>
+
+    <input id="search" placeholder="🔍 Search expenses">
+
+    <h2>Expenses</h2>
+
+    <ul id="expenseList"></ul>
+
+  </section>
+
+
+  <section class="chart-box">
+
+    <h2>Spending</h2>
+
+    <canvas id="chart"></canvas>
+
+  </section>
+
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
