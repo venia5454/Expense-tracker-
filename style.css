@@ -252,3 +252,10 @@ button:active {
 .purple button {
   background:#9c27b0;
 }
+.alert {
+  padding: 15px;
+  border-radius: 12px;
+  margin: 10px 0;
+  font-weight: bold;
+  animation: slideUp 0.4s ease;
+}
