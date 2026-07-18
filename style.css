@@ -134,3 +134,54 @@ select {
   color: white;
   border-color: #555;
 }
+/* App animations */
+
+.app {
+  animation: fadeIn 0.5s ease;
+}
+
+.card,
+.add-box,
+.budget-box,
+.chart-box,
+.expense {
+  animation: slideUp 0.4s ease;
+  transition: transform 0.2s;
+}
+
+.card:hover,
+.expense:hover {
+  transform: translateY(-3px);
+}
+
+button {
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
