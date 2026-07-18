@@ -272,3 +272,48 @@ button:active {
   border-radius:12px;
   display:none;
 }
+/* Mobile app polish */
+
+body {
+  overflow-x: hidden;
+}
+
+.app {
+  padding-bottom: 90px;
+}
+
+.tabs {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 10px;
+  box-shadow: 0 -3px 10px #0002;
+  z-index: 100;
+}
+
+.tabs button {
+  flex: 1;
+  border-radius: 12px;
+}
+
+
+input,
+select,
+button {
+  min-height: 45px;
+}
+
+
+@media (max-width: 500px){
+
+  .summary {
+    grid-template-columns: 1fr;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
+
+}
