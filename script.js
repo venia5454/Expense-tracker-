@@ -529,3 +529,64 @@ document.getElementById("addReceipt").onclick = () => {
   alert("Receipt added!");
 
 };
+document.getElementById("scanReceipt").onclick = async () => {
+
+  let file =
+  document.getElementById("receiptImage").files[0];
+
+
+  if(!file){
+
+    alert("Take a picture first");
+
+    return;
+
+  }
+
+
+  document.getElementById("scanStatus").innerText =
+  "Scanning receipt...";
+
+
+  let result =
+  await Tesseract.recognize(
+    file,
+    "eng"
+  );
+
+
+  let text =
+  result.data.text;
+
+
+  document.getElementById("scanStatus").innerText =
+  "Scan complete!";
+
+
+  console.log(text);
+
+
+  let numbers =
+  text.match(/\d+\.\d{2}/g);
+
+
+  if(numbers){
+
+    document.getElementById("receiptAmount").value =
+    numbers[numbers.length-1];
+
+  }
+
+
+  let lines =
+  text.split("\n");
+
+
+  if(lines.length > 0){
+
+    document.getElementById("receiptName").value =
+    lines[0];
+
+  }
+
+};
