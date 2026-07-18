@@ -328,7 +328,7 @@ const lockScreen = document.getElementById("lockScreen");
 lockScreen.classList.add("hidden");
 
 
-document.getElementById("unlockBtn").onclick = () => {
+document.getElementById("unlockBtn").onclick = () => {//
 
   let entered =
   document.getElementById("unlockPin").value;
