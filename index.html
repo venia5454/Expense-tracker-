@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#4caf50">  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Expense Tracker</title>
   <link rel="stylesheet" href="style.css">
@@ -88,7 +89,15 @@
 
 </div>
 
+<button id="exportBtn">📤 Export Data</button>
 
+<button id="reportBtn">📅 Monthly Report</button>
+
+<div id="pinBox">
+  <h2>🔒 App PIN</h2>
+  <input id="pinInput" placeholder="Create PIN">
+  <button id="savePin">Save PIN</button>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="script.js"></script>
 
