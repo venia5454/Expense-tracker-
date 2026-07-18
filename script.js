@@ -325,12 +325,7 @@ document.getElementById("installBtn").onclick = async () => {
 
 };
 const lockScreen = document.getElementById("lockScreen");
-const savedPin = localStorage.getItem("pin");
-
-if (!savedPin) {
-  lockScreen.classList.add("hidden");
-}
-
+lockScreen.classList.add("hidden");
 
 
 document.getElementById("unlockBtn").onclick = () => {
