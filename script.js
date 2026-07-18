@@ -27,14 +27,28 @@ document.getElementById("addBtn").onclick = () => {
     return;
   }
 
-  expenses.push({
-    name,
-    amount,
-    category,
-    date: new Date().toLocaleDateString()
-  });
+  let imageURL = "";
 
-  save();
+let file = document.getElementById("receiptImage").files[0];
+
+if(file){
+  imageURL = URL.createObjectURL(file);
+}
+
+
+expenses.push({
+
+    name:name,
+
+    amount:amount,
+
+    category:"Receipt",
+
+    date:new Date().toLocaleDateString(),
+
+    image:imageURL
+
+});
 
   nameInput.value = "";
   amountInput.value = "";
