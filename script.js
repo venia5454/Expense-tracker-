@@ -350,3 +350,56 @@ function(){
   showHistory(Number(this.value));
 
 };
+document.getElementById("saveGoal").onclick = () => {
+
+  let goal = {
+    name: document.getElementById("goalName").value,
+    amount: Number(document.getElementById("goalAmount").value),
+    saved: Number(document.getElementById("savedAmount").value)
+  };
+
+  localStorage.setItem(
+    "goal",
+    JSON.stringify(goal)
+  );
+
+  showGoal();
+
+};
+
+
+function showGoal(){
+
+  let goal =
+  JSON.parse(localStorage.getItem("goal"));
+
+  if(!goal) return;
+
+
+  let percent =
+  Math.min(
+    (goal.saved / goal.amount) * 100,
+    100
+  );
+
+
+  document.getElementById("goalDisplay").innerHTML = `
+
+  <h3>${goal.name}</h3>
+
+  $${goal.saved} / $${goal.amount}
+
+  <div class="progress">
+    <div class="progress-bar"
+    style="width:${percent}%">
+    </div>
+  </div>
+
+  <p>${percent.toFixed(0)}% complete</p>
+
+  `;
+
+}
+
+
+showGoal();
