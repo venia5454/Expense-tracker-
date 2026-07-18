@@ -31,7 +31,27 @@
   </header>
 
   <section id="home" class="summary">
-    <div id="alertBox"></div><div class="card">
+    <section class="receipt-box">
+
+  <h2>📸 Receipt Scanner</h2>
+
+  <input 
+    type="file" 
+    id="receiptImage" 
+    accept="image/*" 
+    capture="environment">
+
+  <input id="receiptName" placeholder="Receipt name">
+
+  <input id="receiptAmount" type="number" placeholder="Amount">
+
+  <button id="addReceipt">
+    Add Receipt Expense
+  </button>
+
+  <img id="receiptPreview">
+
+</section><div id="alertBox"></div><div class="card">
       <h3>Total Spent</h3>
       <p id="total">$0.00</p>
     </div>
