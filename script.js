@@ -403,3 +403,41 @@ function showGoal(){
 
 
 showGoal();
+let savedTheme =
+localStorage.getItem("theme");
+
+
+if(savedTheme){
+
+  document.body.classList.add(savedTheme);
+
+}
+
+
+document.getElementById("themeSelect").onchange =
+function(){
+
+  document.body.className = "";
+
+  document.body.classList.add(this.value);
+
+  localStorage.setItem(
+    "theme",
+    this.value
+  );
+
+};
+
+
+
+document.getElementById("resetBtn").onclick = () => {
+
+  if(confirm("Delete all app data?")){
+
+    localStorage.clear();
+
+    location.reload();
+
+  }
+
+};
