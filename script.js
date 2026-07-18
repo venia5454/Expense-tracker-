@@ -189,3 +189,69 @@ function makeChart(data){
 
 
 update();
+// Export expenses
+document.getElementById("exportBtn").onclick = () => {
+
+  let file = JSON.stringify(expenses,null,2);
+
+  let blob = new Blob([file], {
+    type:"application/json"
+  });
+
+  let link=document.createElement("a");
+
+  link.href=URL.createObjectURL(blob);
+
+  link.download="expenses.json";
+
+  link.click();
+
+};
+
+
+// Monthly report
+document.getElementById("reportBtn").onclick = () => {
+
+  let total = expenses.reduce(
+    (sum,e)=>sum+e.amount,0
+  );
+
+  alert(
+    "Monthly Report\n\n" +
+    "Expenses: " + expenses.length +
+    "\nSpent: $" + total.toFixed(2)
+  );
+
+};
+
+
+// PIN system
+let savedPin =
+localStorage.getItem("pin");
+
+
+document.getElementById("savePin").onclick = ()=>{
+
+ let pin =
+ document.getElementById("pinInput").value;
+
+ if(pin.length < 4){
+   alert("PIN needs 4 numbers");
+   return;
+ }
+
+ localStorage.setItem("pin",pin);
+
+ alert("PIN saved!");
+
+};
+
+
+// Install app offline
+if("serviceWorker" in navigator){
+
+ navigator.serviceWorker.register(
+ "service-worker.js"
+ );
+
+}
