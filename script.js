@@ -635,3 +635,12 @@ document.getElementById("changePin").onclick = () => {
   }
 
 };
+document.getElementById("resetPin").onclick = () => {
+
+  localStorage.removeItem("pin");
+
+  alert("PIN reset! Reload the app.");
+
+  location.reload();
+
+};
