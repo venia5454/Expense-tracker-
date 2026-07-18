@@ -119,7 +119,9 @@ function update(){
         ${expense.category}
         <br>
         ${expense.date}
-      </div>
+     ${expense.image ? 
+`<img src="${expense.image}" width="80">`
+: ""} </div>
 
       <div>
         $${expense.amount.toFixed(2)}
