@@ -468,3 +468,64 @@ document.getElementById("resetBtn").onclick = () => {
   }
 
 };
+let receiptFile =
+document.getElementById("receiptImage");
+
+
+receiptFile.onchange = () => {
+
+  let file = receiptFile.files[0];
+
+  if(file){
+
+    let image =
+    document.getElementById("receiptPreview");
+
+    image.src =
+    URL.createObjectURL(file);
+
+    image.style.display = "block";
+
+  }
+
+};
+
+
+
+document.getElementById("addReceipt").onclick = () => {
+
+  let name =
+  document.getElementById("receiptName").value;
+
+  let amount =
+  Number(document.getElementById("receiptAmount").value);
+
+
+  if(name === "" || amount <= 0){
+
+    alert("Enter receipt details");
+
+    return;
+
+  }
+
+
+  expenses.push({
+
+    name:name,
+
+    amount:amount,
+
+    category:"Receipt",
+
+    date:new Date().toLocaleDateString()
+
+  });
+
+
+  save();
+
+
+  alert("Receipt added!");
+
+};
