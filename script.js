@@ -606,3 +606,32 @@ document.getElementById("scanReceipt").onclick = async () => {
   }
 
 };
+// Lock app button
+document.getElementById("lockApp").onclick = () => {
+
+  document.getElementById("lockScreen")
+  .classList.remove("hidden");
+
+  document.getElementById("unlockPin").value = "";
+
+};
+
+
+// Change PIN button
+document.getElementById("changePin").onclick = () => {
+
+  let newPin = prompt("Enter your new 4-digit PIN:");
+
+  if(newPin && newPin.length >= 4){
+
+    localStorage.setItem("pin", newPin);
+
+    alert("PIN changed!");
+
+  } else {
+
+    alert("PIN must be at least 4 digits");
+
+  }
+
+};
