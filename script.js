@@ -306,3 +306,47 @@ document.getElementById("unlockBtn").onclick = () => {
   }
 
 };
+function showHistory(month){
+
+  let filtered = expenses.filter(expense => {
+
+    let expenseDate =
+    new Date(expense.date);
+
+    return expenseDate.getMonth() == month;
+
+  });
+
+
+  let total = filtered.reduce(
+    (sum, expense) => sum + expense.amount,
+    0
+  );
+
+
+  document.getElementById("historyResult").innerHTML = `
+
+    <b>Month Total:</b> $${total.toFixed(2)}
+    <br>
+    <b>Number of Expenses:</b> ${filtered.length}
+
+    <hr>
+
+    ${
+      filtered.map(expense =>
+      `• ${expense.name}: $${expense.amount}`
+      ).join("<br>")
+      || "No expenses this month"
+    }
+
+  `;
+
+}
+
+
+document.getElementById("monthSelect").onchange =
+function(){
+
+  showHistory(Number(this.value));
+
+};
