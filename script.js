@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f2f4f8;
+  color: #222;
+}
+
+.app {
+  max-width: 450px;
+  margin: auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 26px;
+}
+
+button {
+  border: none;
+  background: #4caf50;
+  color: white;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+#darkModeBtn {
+  background: #333;
+}
+
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 3px 10px #0002;
+}
+
+.card p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+section {
+  margin-bottom: 20px;
+}
+
+
+.add-box,
+.budget-box,
+.chart-box {
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 3px 10px #0002;
+}
+
+
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+
+#expenseList {
+  padding: 0;
+  list-style: none;
+}
+
+
+.expense {
+  background: white;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px #0002;
+}
+
+
+.delete {
+  background: #e53935;
+  padding: 8px;
+}
+
+
+.dark {
+  background: #121212;
+  color: white;
+}
+
+.dark .card,
+.dark .add-box,
+.dark .budget-box,
+.dark .chart-box,
+.dark .expense {
+  background: #1e1e1e;
+  color: white;
+}
+
+.dark input,
+.dark select {
+  background: #333;
+  color: white;
+  border-color: #555;
+}
