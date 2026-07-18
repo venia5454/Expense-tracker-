@@ -205,3 +205,16 @@ button:active {
 #lockScreen.hidden {
   display: none;
 }
+.history-box {
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 3px 10px #0002;
+  animation: slideUp 0.4s ease;
+}
+
+#historyResult {
+  margin-top: 15px;
+  font-size: 18px;
+  line-height: 1.6;
+}
