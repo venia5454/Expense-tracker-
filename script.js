@@ -325,10 +325,12 @@ document.getElementById("installBtn").onclick = async () => {
 
 };
 const lockScreen = document.getElementById("lockScreen");
-lockScreen.classList.add("hidden");
+if (!savedPin) {
+  lockScreen.classList.add("hidden");
+}
 
 
-document.getElementById("unlockBtn").onclick = () => {//
+document.getElementById("unlockBtn").onclick = () => {
 
   let entered =
   document.getElementById("unlockPin").value;
