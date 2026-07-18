@@ -281,3 +281,28 @@ document.getElementById("installBtn").onclick = async () => {
   }
 
 };
+const lockScreen = document.getElementById("lockScreen");
+const savedPin = localStorage.getItem("pin");
+
+if (!savedPin) {
+  lockScreen.classList.add("hidden");
+}
+
+
+document.getElementById("unlockBtn").onclick = () => {
+
+  let entered =
+  document.getElementById("unlockPin").value;
+
+  if (entered === localStorage.getItem("pin")) {
+
+    lockScreen.classList.add("hidden");
+
+  } else {
+
+    document.getElementById("lockMessage").innerText =
+    "Wrong PIN";
+
+  }
+
+};
