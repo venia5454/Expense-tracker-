@@ -9,7 +9,14 @@
 </head>
 
 <body> <div id="lockScreen">
-  <h1>🔒 Expense Tracker</h1>
+ <nav class="tabs">
+
+  <button onclick="showPage('home')">🏠 Home</button>
+  <button onclick="showPage('history')">📊 History</button>
+  <button onclick="showPage('goals')">🎯 Goals</button>
+  <button onclick="showPage('settings')">⚙️ Settings</button>
+
+</nav> <h1>🔒 Expense Tracker</h1>
   <p>Enter PIN</p>
   <input id="unlockPin" type="password" placeholder="PIN">
   <button id="unlockBtn">Unlock</button>
