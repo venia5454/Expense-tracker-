@@ -332,6 +332,7 @@ if (!savedPin) {
 }
 
 
+
 document.getElementById("unlockBtn").onclick = () => {
 
   let entered =
