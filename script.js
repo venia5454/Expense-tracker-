@@ -1,136 +1,191 @@
-* {
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
+let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+let budget = localStorage.getItem("budget") || 0;
 
-body {
-  margin: 0;
-  background: #f2f4f8;
-  color: #222;
-}
+const nameInput = document.getElementById("expenseName");
+const amountInput = document.getElementById("expenseAmount");
+const categoryInput = document.getElementById("category");
+const list = document.getElementById("expenseList");
 
-.app {
-  max-width: 450px;
-  margin: auto;
-  padding: 20px;
-}
+const totalText = document.getElementById("total");
+const budgetText = document.getElementById("budget");
+const remainingText = document.getElementById("remaining");
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+const chartCanvas = document.getElementById("chart");
 
-header h1 {
-  font-size: 26px;
-}
-
-button {
-  border: none;
-  background: #4caf50;
-  color: white;
-  padding: 12px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  opacity: 0.85;
-}
-
-#darkModeBtn {
-  background: #333;
-}
+let chart;
 
 
-.summary {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin: 20px 0;
-}
+// Add expense
+document.getElementById("addBtn").onclick = () => {
 
-.card {
-  background: white;
-  padding: 15px;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0 3px 10px #0002;
-}
+  let name = nameInput.value;
+  let amount = Number(amountInput.value);
+  let category = categoryInput.value;
 
-.card p {
-  font-size: 18px;
-  font-weight: bold;
-}
+  if(name === "" || amount <= 0){
+    alert("Enter a valid expense");
+    return;
+  }
+
+  expenses.push({
+    name,
+    amount,
+    category,
+    date: new Date().toLocaleDateString()
+  });
+
+  save();
+
+  nameInput.value = "";
+  amountInput.value = "";
+};
 
 
-section {
-  margin-bottom: 20px;
+// Save budget
+document.getElementById("saveBudget").onclick = () => {
+
+  budget = Number(document.getElementById("budgetInput").value);
+
+  localStorage.setItem("budget", budget);
+
+  update();
+
+};
+
+
+// Delete expense
+function removeExpense(index){
+
+  expenses.splice(index,1);
+
+  save();
+
 }
 
 
-.add-box,
-.budget-box,
-.chart-box {
-  background: white;
-  padding: 20px;
-  border-radius: 18px;
-  box-shadow: 0 3px 10px #0002;
+// Save data
+function save(){
+
+  localStorage.setItem(
+    "expenses",
+    JSON.stringify(expenses)
+  );
+
+  update();
+
 }
 
 
-input,
-select {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 16px;
+// Update app
+function update(){
+
+  list.innerHTML = "";
+
+  let total = 0;
+
+  let categories = {};
+
+
+  expenses.forEach((expense,index)=>{
+
+    total += expense.amount;
+
+    categories[expense.category] =
+      (categories[expense.category] || 0)
+      + expense.amount;
+
+
+    let li = document.createElement("li");
+
+    li.className = "expense";
+
+    li.innerHTML = `
+      <div>
+        <b>${expense.name}</b><br>
+        ${expense.category}
+        <br>
+        ${expense.date}
+      </div>
+
+      <div>
+        $${expense.amount.toFixed(2)}
+        <br>
+        <button class="delete"
+        onclick="removeExpense(${index})">
+        ❌
+        </button>
+      </div>
+    `;
+
+    list.appendChild(li);
+
+  });
+
+
+  totalText.innerHTML =
+    "$" + total.toFixed(2);
+
+  budgetText.innerHTML =
+    "$" + Number(budget).toFixed(2);
+
+  remainingText.innerHTML =
+    "$" + (budget-total).toFixed(2);
+
+
+  makeChart(categories);
+
 }
 
 
-#expenseList {
-  padding: 0;
-  list-style: none;
+// Search
+document.getElementById("search").oninput = function(){
+
+  let text = this.value.toLowerCase();
+
+  document.querySelectorAll(".expense")
+  .forEach(item=>{
+
+    item.style.display =
+    item.innerText.toLowerCase()
+    .includes(text)
+    ? "flex"
+    : "none";
+
+  });
+
+};
+
+
+// Dark mode
+document.getElementById("darkModeBtn").onclick = ()=>{
+
+  document.body.classList.toggle("dark");
+
+};
+
+
+// Chart
+function makeChart(data){
+
+  if(chart){
+    chart.destroy();
+  }
+
+
+  chart = new Chart(chartCanvas,{
+    type:"doughnut",
+
+    data:{
+      labels:Object.keys(data),
+
+      datasets:[{
+        data:Object.values(data)
+      }]
+    }
+
+  });
+
 }
 
 
-.expense {
-  background: white;
-  margin: 10px 0;
-  padding: 15px;
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-between;
-  box-shadow: 0 2px 8px #0002;
-}
-
-
-.delete {
-  background: #e53935;
-  padding: 8px;
-}
-
-
-.dark {
-  background: #121212;
-  color: white;
-}
-
-.dark .card,
-.dark .add-box,
-.dark .budget-box,
-.dark .chart-box,
-.dark .expense {
-  background: #1e1e1e;
-  color: white;
-}
-
-.dark input,
-.dark select {
-  background: #333;
-  color: white;
-  border-color: #555;
-}
+update();
